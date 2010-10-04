@@ -1,0 +1,38 @@
+/* messages in language 'zh' */ {
+  "extName": {
+    "message": "Chrome页面样式",
+    "description": "扩展名称。"
+  },
+  "extDescription": {
+    "message": "Chrome页面样式",
+    "description": "扩展描述。"
+  },
+  "titleHasStyles": {
+    "message": "点击以选择一个样式",
+    "description": "页面样式的标题。"
+  },
+  "titleNoStyles": {
+    "message": "未发现页面样式",
+    "description": "页面样式的标题。"
+  },
+  "styleDefault": {
+    "message": "默认样式",
+    "description": "指明一个样式是页面默认的。"
+  },
+  "buttonSave": {
+    "message": "保存",
+    "description": "保存按扭的文字。"
+  },
+  "labelAlwaysShowIcon": {
+    "message": "未找到页面样式时也在地址栏显示图标",
+    "description": "'总是显示图标'选项的标签描述"
+  },
+  "textNoStylesFound": {
+    "message": "未发现页面样式",
+    "description": "未发现页面样式时显示出弹出窗口中的文字。"
+  },
+  "messageSettingsSaved": {
+    "message": "配置已保存",
+    "description": "显示在提示窗口中提示用户配置已保存的消息。"
+  }
+}

@@ -1,0 +1,13 @@
+/* chrome-page-style */ {
+  "name": "__MSG_extName__",
+  "description": "__MSG_extDescription__",
+  "version": "1.0.0",
+  "minimum_chrome_version": "5.0.308.0",
+  "default_locale": "en",
+  "options_page": "options.html",
+  "background_page": "background.html",
+  "permissions": ["tabs", "http://*/*", "https://*/*"],
+  "icons": {"16": "images/icon16.png", "48": "images/icon48.png", "128": "images/icon128.png"},
+  "page_action": {"default_popup": "popup.html"},
+  "content_scripts": [{"matches": ["http://*/*", "https://*/*"], "js": ["js/contentscript.js"]}]
+}

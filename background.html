@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #canvas {width: 19px; height: 19px;}
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/chrome-utilities.js"></script>
+    <script>
+      (function ($) {
+        $(document).ready(function () {
+          function onRequest(request, sender, sendResponse) {
+            var tabId = sender.tab.id;
+            var hasStyles = request.styles.length > 0;
+            var data = {"tabId": tabId};
+            var alwaysShowIcon = localStorage["alwaysShowIcon"] || "0";
+
+            action.show(tabId);
+            action.setIcon($.extend({}, data, {"path": "images/icon-" + (hasStyles ? "has-styles" : "no-styles") + ".png"}));
+            action.setTitle($.extend({}, data, {"title": i18n(hasStyles ? "titleHasStyles" : "titleNoStyles")}));
+
+            if (!hasStyles && alwaysShowIcon != "1") {
+              action.hide(tabId);
+            }
+
+            sendResponse({});
+          }
+
+          extension.onRequest.addListener(onRequest);
+          info("[INFO] Chrome Page Style Initialized");
+        });
+      })(jQuery);
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+  </body>
+</html>

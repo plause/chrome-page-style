@@ -1,0 +1,8 @@
+* {margin: 0; padding: 0;}
+#menu {margin: 0 auto;}
+ul {list-style: none; padding: 1px;}
+li {color: black; font-size: 9pt; font-family: sans-serif; white-space: nowrap;}
+li a:link {display: block; color: black; padding: 4px 20px; text-decoration: none;}
+li a:visited {}
+li a:hover {background-color: lightgray;}
+li a:active {background-color: blue; color: white;}
