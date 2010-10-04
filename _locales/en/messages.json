@@ -1,4 +1,4 @@
-/* messages in language 'en' */ {
+{
   "extName": {
     "message": "Chrome Page Style",
     "description": "Extension name."

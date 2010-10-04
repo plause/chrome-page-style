@@ -1,4 +1,4 @@
-/* messages in language 'zh' */ {
+{
   "extName": {
     "message": "Chrome页面样式",
     "description": "扩展名称。"
