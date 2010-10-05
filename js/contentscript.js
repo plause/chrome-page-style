@@ -1,8 +1,6 @@
 (function () {
-  var detail = {"default": document.selectedStylesheetSet, "styles": []};
-
-  var styles = detail.styles;
   var links = document.getElementsByTagName("link");
+  var detail = {"default": document.selectedStylesheetSet, "styles": []};
 
   /*
    * persistent stylesheets will be disabled if they are inner stylesheets in
@@ -41,6 +39,8 @@
   }
 
   function refreshStylesheetDetail() {
+    var styles = detail.styles;
+
     styles.length = 0;
 
     for (var i = 0, j = links.length; i < j; i++) {
@@ -53,6 +53,16 @@
         styles.push(title);
       }
     }
+
+    var newStyles = [];
+
+    for (var i = 0, j = styles.length; i < j; i++) {
+      if (newStyles.indexOf(styles[i]) == -1) {
+        newStyles.push(styles[i]);
+      }
+    }
+
+    detail.styles = newStyles;
   }
 
   function onRequest(request, sender, sendResponse) {
