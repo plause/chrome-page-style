@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gupdate protocol="2.0" xmlns="http://www.google.com/update2/response">
+  <app appid="ddpkgkegfklikkmfmneldonhldahhacb">
+    <updatecheck codebase="http://git.plause.info/chrome-page-style/download/chrome-page-style-1.0.3.zip" version="1.0.3" />
+  </app>
+</gupdate>
