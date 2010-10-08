@@ -1,85 +1,61 @@
 (function () {
-  var links = document.getElementsByTagName("link");
-  var detail = {"default": document.selectedStylesheetSet, "styles": []};
+  var alternate = /alternat(e|ive)/i;
+  var stylesheet = /stylesheet/i;
 
-  /*
-   * persistent stylesheets will be disabled if they are inner stylesheets in
-   * the disabled stylesheets. (loaded by '@import').
-   *
-   * this function will fix the issue by re-enable all persistent stylesheets.
-   */
-  function enablePersistentStylesheets() {
-    for (var i = 0, j = links.length; i < j; i++) {
-      var link = links.item(i);
-      var rel = link.getAttribute("rel");
-      var title = link.getAttribute("title");
+  var detail = {"default": document.selectedStylesheetSet};
 
-      // no title or not alternate
-      if (!title || rel.toLowerCase().indexOf("alternate") == -1) {
-        link.disabled = true;
-        link.disabled = false;
+  function switchStylesheet(name) {
+    $("link").each(function () {
+      var link = $(this);
+      var title = link.attr("title");
+
+      if (stylesheet.test(link.attr("rel")) && title) {
+        link.attr("disabled", true).attr("disabled", title != name);
       }
-    }
+    }).each(function () {
+      var link = $(this);
+      // enable persistent stylesheet
+      // a persistent stylesheet is a stylesheet without title
+      if (stylesheet.test(link.attr("rel")) && !link.attr("title")) {
+        link.attr("disabled", true).attr("disabled", false);
+      }
+    });
   }
 
-  function switchStylesheetSet(name) {
-    for (var i = 0, j = links.length; i < j; i++) {
-      var link = links.item(i);
-      var rel = link.getAttribute("rel");
-      var title = link.getAttribute("title");
+  function refreshStylesheets() {
+    var flag = {};
+    var styles = detail.styles = [];
 
-      // has a title
-      if (title && rel.toLowerCase().indexOf("stylesheet") > -1) {
-        link.disabled = true;
-        link.disabled = title != name;
+    $("link").each(function () {
+      var link = $(this);
+      var title = link.attr("title");
+
+      if (stylesheet.test(link.attr("rel")) && title) {
+        if (!flag[title] && (flag[title] = true)) {
+          styles.push(title);
+        }
       }
-    }
+    });
 
-    enablePersistentStylesheets();
-  }
-
-  function refreshStylesheetDetail() {
-    var styles = detail.styles;
-
-    styles.length = 0;
-
-    for (var i = 0, j = links.length; i < j; i++) {
-      var link = links.item(i);
-      var rel = link.getAttribute("rel");
-      var title = link.getAttribute("title");
-
-      // has a title
-      if (title && rel.toLowerCase().indexOf("stylesheet") > -1) {
-        styles.push(title);
-      }
-    }
-
-    var newStyles = [];
-
-    for (var i = 0, j = styles.length; i < j; i++) {
-      if (newStyles.indexOf(styles[i]) == -1) {
-        newStyles.push(styles[i]);
-      }
-    }
-
-    detail.styles = newStyles;
+    detail.selected = document.selectedStylesheetSet;
   }
 
   function onRequest(request, sender, sendResponse) {
     if (request.type == "detail") {
-      refreshStylesheetDetail();
+      refreshStylesheets();
       sendResponse(detail);
     } else if (request.type == "switch") {
-      switchStylesheetSet(request.style);
-      sendResponse({});
+      switchStylesheet(request.style);
+      sendResponse({"result": true});
     }
   }
 
-  console.log(document.readyState);
+  if (detail["default"] != null) {
+    switchStylesheet(detail["default"]);
+  }
 
-  refreshStylesheetDetail();
-  switchStylesheetSet(detail["default"]);
+  refreshStylesheets();
 
   chrome.extension.sendRequest(detail);
   chrome.extension.onRequest.addListener(onRequest);
-})();
+})(jQuery);
