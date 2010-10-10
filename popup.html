@@ -5,6 +5,12 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/chrome-utilities.js"></script>
     <script>
+      function noStyles() {
+        tabs.getSelected(null, function (tab) {
+          tabs.sendRequest(tab.id, {"type": "none"});
+        });
+      }
+
       function switchStyle(style) {
         tabs.getSelected(null, function (tab) {
           tabs.sendRequest(tab.id, {"type": "switch", "style": style});
@@ -13,8 +19,8 @@
 
       (function ($) {
         $(document).ready(function () {
-          function createLink(name, selected) {
-            return '<a href="javascript:switchStyle(\'' + name + '\');">' + name + (selected ? ' (' + i18n("styleDefault") + ')' : '') + '</a>';
+          function createLink(name) {
+            return '<a href="javascript:switchStyle(\'' + name + '\');">' + name + '</a>';
           }
 
           tabs.getSelected(null, function (tab) {
@@ -25,8 +31,13 @@
               var size = styles.length;
               var selected = response["default"];
 
-              if (size == 0) {
-                html.push('<li><a href="javascript:;">' + i18n("textNoStylesFound") + '</a></li>');
+              selected = selected == null ? "null" : "'" + selected + "'";
+
+              html.push('<li><a style="font-weight: bold;" href="javascript:noStyles();">' + i18n("menuNoStyles") + '</a></li>');
+              html.push('<li><a style="font-weight: bold;" href="javascript:switchStyle(' + selected + ');">' + i18n("styleDefault") + '</a></li>');
+
+              if (size > 0) {
+                html.push('<li> </li>');
               }
 
               for (var i = 0, j = styles.length; i < j; i++) {

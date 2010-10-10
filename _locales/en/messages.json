@@ -23,6 +23,10 @@
     "message": "Save",
     "description": "Text of the 'save' button."
   },
+  "menuNoStyles": {
+    "message": "No Style",
+    "description": "Text of the 'No Style' menu."
+  },
   "labelAlwaysShowIcon": {
     "message": "Always show page action icon even page styles not found",
     "description": "Label text of option 'alwaysShowIcon'."
