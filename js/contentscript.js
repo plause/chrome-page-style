@@ -39,8 +39,10 @@
   function toggleInlineStyles(toggle) {
     $("*").each(function () {
       if (toggle) {
-        this.style["chrome-page-style"] = this.style.cssText;
-        this.style.cssText = "";
+        if (this.style.cssText != "") {
+          this.style["chrome-page-style"] = this.style.cssText;
+          this.style.cssText = "";
+        }
       } else {
         if (this.style["chrome-page-style"]) {
           this.style.cssText = this.style["chrome-page-style"];
