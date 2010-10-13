@@ -22,17 +22,22 @@
     return isStylesheet(link) && $(link).attr("title");
   }
 
+  function toggleSheet(sheet, toggle) {
+    sheet.disabled = toggle;
+    sheet.disabled = toggle;
+  }
+
   function toggleLinkedStyles(toggle) {
     $("link").each(function () {
       if (isStylesheet(this)) {
-        $(this).attr("disabled", true).attr("disabled", true);
+        toggleSheet(this, true);
       }
     });
   }
 
   function toggleEmbeddedStyles(toggle) {
     $("style").each(function () {
-      $(this.sheet).attr("disabled", toggle).attr("disabled", toggle);
+      toggleSheet(this.sheet, toggle);
     });
   }
 
@@ -69,11 +74,11 @@
       var val = name ? $(this).attr("title") != name : isAlternate(this);
 
       if (isStylesheet(this)) {
-        $(this).attr("disabled", val).attr("disabled", val);
+        toggleSheet(this, val);
       }
     }).each(function () {
       if (isPersistentStylesheet(this)) {
-        $(this).attr("disabled", false).attr("disabled", false);
+        toggleSheet(this, false);
       }
     });
 
