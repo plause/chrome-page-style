@@ -1,6 +1,7 @@
 var alternate = /\balternate\b/i;
 var stylesheet = /\bstylesheet\b/i;
 
+var id = "ddpkgkegfklikkmfmneldonhldahhacb";
 var property = "chrome-page-style-" + Math.random();
 
 // reads the default style from the browser.
@@ -8,6 +9,8 @@ var property = "chrome-page-style-" + Math.random();
 // or meta HTTP equivalent: Default-Style
 // or preferred stylesheets
 var defaultStyle = document.selectedStylesheetSet;
+
+var settings = {"remeberSelected": false};
 
 /*
  * check if the link's relationships has a type named 'alternate'.
@@ -124,6 +127,10 @@ function switchStyle(name) {
 
   toggleEmbeddedStylesheets(false);
   toggleInlineStylesheets(false);
+
+  if (settings["rememberSelected"] == "1") {
+    $.cookie(id, name, {"expires": 1});
+  }
 }
 
 /*
@@ -149,8 +156,9 @@ function reloadPageStyle() {
     }
   });
 
-  var selected = document.selectedStylesheetSet || defaultStyle;
-  var preferred = (preferreds.length > 1 ? null : preferreds[0]) || defaultStyle;
+  var remember = settings["rememberSelected"] == "1";
+  var selected = (remember ? $.cookie(id) : null) || defaultStyle;
+  var preferred = preferreds.length > 1 ? defaultStyle : preferreds[0];
 
   return {"alternates": alternates, "selected": selected, "preferred": preferred};
 }
@@ -168,11 +176,21 @@ function onRequest(request, sender, sendResponse) {
   }
 }
 
-var pageStyle = reloadPageStyle();
+/*
+ *
+ */
+function initialize(object) {
+  $.extend(settings, object);
 
-chrome.extension.sendRequest(pageStyle);
-chrome.extension.onRequest.addListener(onRequest);
+  var pageStyle = reloadPageStyle();
 
-// fix chrome
-noStyle();
-switchStyle(pageStyle.selected);
+  // send details to background
+  chrome.extension.sendRequest({"type": "icon", "detail": pageStyle});
+  chrome.extension.onRequest.addListener(onRequest);
+
+  // fix chrome
+  noStyle();
+  switchStyle(pageStyle.selected);
+}
+
+chrome.extension.sendRequest({"type": "init"}, initialize);

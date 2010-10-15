@@ -25,15 +25,19 @@ function doPageAction(tabId, bool) {
 }
 
 /*
- * receive page style details
+ *
  */
-function onRequest(detail, sender) {
-  var tabId = sender.tab.id;
-  var bool = detail.alternates.length > 0;
+function onRequest(request, sender, sendResponse) {
+  if (request.type == "init") {
+    sendResponse({"rememberSelected": localStorage["rememberSelected"]});
+  } else if (request.type == "icon") {
+    var tabId = sender.tab.id;
+    var bool = request.detail.alternates.length > 0;
 
-  setIcon(tabId, bool);
-  setTitle(tabId, bool);
-  doPageAction(tabId, bool);
+    setIcon(tabId, bool);
+    setTitle(tabId, bool);
+    doPageAction(tabId, bool);
+  }
 }
 
 $(document).ready(function () {
