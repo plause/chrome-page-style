@@ -19,8 +19,12 @@
     "message": "默认样式",
     "description": "指明一个样式是页面默认的。"
   },
+  "titleSettings": {
+    "message": "Chrome页面样式配置",
+    "description": "配置页面的标题文字"
+  },
   "buttonSave": {
-    "message": "保存",
+    "message": "保存配置",
     "description": "保存按扭的文字。"
   },
   "menuNoStyles": {
