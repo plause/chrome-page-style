@@ -3,55 +3,7 @@
   <head>
     <link rel="stylesheet" href="css/popup.css">
     <script src="js/jquery.min.js"></script>
-    <script src="js/chrome-utilities.js"></script>
-    <script>
-      function noStyles() {
-        tabs.getSelected(null, function (tab) {
-          tabs.sendRequest(tab.id, {"type": "none"});
-        });
-      }
-
-      function switchStyle(style) {
-        tabs.getSelected(null, function (tab) {
-          tabs.sendRequest(tab.id, {"type": "switch", "style": style});
-        });
-      }
-
-      (function ($) {
-        $(document).ready(function () {
-          function createLink(name) {
-            return '<a href="javascript:switchStyle(\'' + name + '\');">' + name + '</a>';
-          }
-
-          tabs.getSelected(null, function (tab) {
-            tabs.sendRequest(tab.id, {"type": "detail"}, function (response) {
-              var html = ['<ul>'];
-
-              var styles = response.styles;
-              var size = styles.length;
-              var selected = response["default"];
-
-              selected = selected == null ? "null" : "'" + selected + "'";
-
-              html.push('<li><a style="font-weight: bold;" href="javascript:noStyles();">' + i18n("menuNoStyles") + '</a></li>');
-              html.push('<li><a style="font-weight: bold;" href="javascript:switchStyle(' + selected + ');">' + i18n("styleDefault") + '</a></li>');
-
-              if (size > 0) {
-                html.push('<li> </li>');
-              }
-
-              for (var i = 0, j = styles.length; i < j; i++) {
-                html.push('<li>' + createLink(styles[i], styles[i] == selected) + '</li>');
-              }
-
-              html.push("</ul>");
-
-              $("#menu").html(html.join(""));
-            });
-          });
-        });
-      })(jQuery);
-    </script>
+    <script src="js/popup.js"></script>
   </head>
   <body>
     <div id="menu"></div>
