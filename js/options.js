@@ -1,8 +1,10 @@
 var i18n = chrome.i18n.getMessage;
 
 $(document).ready(function () {
-  var $alwaysShowIcon = $("label[for=alwaysShowIcon]");
+  var $alwaysShowIcon = $("#alwaysShowIcon");
   $alwaysShowIcon.attr("checked", localStorage["alwaysShowIcon"] == "1");
+
+  $("h1").text(document.title = i18n("titleSettings"));
 
   $("label[for=alwaysShowIcon]").text(i18n("labelAlwaysShowIcon"));
 
