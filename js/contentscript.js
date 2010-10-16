@@ -10,7 +10,7 @@ var property = "chrome-page-style-" + Math.random();
 // or preferred stylesheets
 var defaultStyle = document.selectedStylesheetSet;
 
-var settings = {"remeberSelected": false};
+var settings = {};
 
 /*
  * check if the link's relationships has a type named 'alternate'.
@@ -106,7 +106,7 @@ function toggleInlineStylesheets(toggle) {
  */
 function saveSelected(selected) {
   if (settings["rememberSelected"] == "1") {
-    $.cookie(id, selected, {"expires": 1});
+    $.cookie(id, selected, selected == null ? {} : {"expires": 1});
   }
 }
 
@@ -139,7 +139,7 @@ function switchStyle(name) {
   toggleEmbeddedStylesheets(false);
   toggleInlineStylesheets(false);
 
-  saveSelected(name);
+  saveSelected(name || null);
 }
 
 /*
@@ -167,7 +167,7 @@ function reloadPageStyle() {
 
   var remember = settings["rememberSelected"] == "1";
   var selected = (remember ? $.cookie(id) : null) || defaultStyle;
-  var preferred = preferreds.length > 1 ? defaultStyle : preferreds[0];
+  var preferred = (preferreds.length > 1 ? defaultStyle : preferreds[0]) || null;
 
   return {"alternates": alternates, "selected": selected, "preferred": preferred};
 }
