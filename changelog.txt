@@ -1,0 +1,23 @@
+2010-10-16 v1.0.5
+
+    * add local file url access
+        developers now no need to publish their pages to test themes
+
+        to enable this feature you must go to extensions manager and pick the
+        "allow access to file urls" option for 'Chrome Page Style'
+
+    * use cookies to remember the last selected style
+        toggle this feature in options page. default: false
+
+    * mark the selected style in popup
+        the popup now shows which style is applied
+
+    * rework options page
+        make it more user friendly
+
+    * fix bug in xhtml strict mode
+        view issue detail:
+
+        http://github.com/plause/chrome-page-style/issues/2
+
+    * rewrite core code
