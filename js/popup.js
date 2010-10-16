@@ -1,11 +1,12 @@
 var tabs = chrome.tabs;
 var i18n = chrome.i18n.getMessage;
 
+var id = "ddpkgkegfklikkmfmneldonhldahhacb";
+
 /*
  *
  */
 function noStyle() {
-  console.log("no style");
   tabs.getSelected(null, function (tab) {
     tabs.sendRequest(tab.id, {"type": "none"});
   });
@@ -15,7 +16,6 @@ function noStyle() {
  *
  */
 function switchStyle(name) {
-  console.log("switch style: " + name);
   tabs.getSelected(null, function (tab) {
     tabs.sendRequest(tab.id, {"type": "switch", "style": name});
   });
@@ -40,7 +40,7 @@ function initialize(object) {
   $("#noStyle").click(function () {
     noStyle();
     toggleSelected(this);
-  });
+  }).toggleClass("selected", selected == id);
 
   $("#defaultStyle").click(function () {
     switchStyle(preferred);

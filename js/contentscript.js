@@ -102,12 +102,23 @@ function toggleInlineStylesheets(toggle) {
 }
 
 /*
+ *
+ */
+function saveSelected(selected) {
+  if (settings["rememberSelected"] == "1") {
+    $.cookie(id, selected, {"expires": 1});
+  }
+}
+
+/*
  * disable all styles.
  */
 function noStyle() {
   toggleLinkedStylesheets(true);
   toggleEmbeddedStylesheets(true);
   toggleInlineStylesheets(true);
+
+  saveSelected(id);
 }
 
 /*
@@ -128,9 +139,7 @@ function switchStyle(name) {
   toggleEmbeddedStylesheets(false);
   toggleInlineStylesheets(false);
 
-  if (settings["rememberSelected"] == "1") {
-    $.cookie(id, name, {"expires": 1});
-  }
+  saveSelected(name);
 }
 
 /*
