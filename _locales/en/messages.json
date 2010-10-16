@@ -19,8 +19,12 @@
     "message": "Default Style",
     "description": "Note that specifies a style is 'preferred'."
   },
+  "titleSettings": {
+    "message": "Chrome Page Style Settings",
+    "description": "Title of the options page."
+  },
   "buttonSave": {
-    "message": "Save",
+    "message": "Save Settings",
     "description": "Text of the 'save' button."
   },
   "menuNoStyles": {
@@ -30,6 +34,10 @@
   "labelAlwaysShowIcon": {
     "message": "Always show page action icon even page styles not found",
     "description": "Label text of option 'alwaysShowIcon'."
+  },
+  "labelRememberSelected": {
+    "message": "Use cookies to remember the selected page style",
+    "description": "Label text of option 'rememberSelected'."
   },
   "textNoStylesFound": {
     "message": "No styles found",

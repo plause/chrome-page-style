@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title></title>
     <link rel="stylesheet" href="css/options.css">
     <script src="js/jquery.min.js"></script>
-    <script src="js/chrome-utilities.js"></script>
-    <script>
-      $(document).ready(function () {
-        $("label[for=alwaysShowIcon]").text(i18n("labelAlwaysShowIcon"));
-
-        $("#alwaysShowIcon").attr("checked", localStorage["alwaysShowIcon"] == "1");
-
-        $("input[type=button]").val(i18n("buttonSave")).click(function () {
-          localStorage["alwaysShowIcon"] = $("#alwaysShowIcon").attr("checked") ? "1" : "0";
-          window.alert(i18n("messageSettingsSaved"));
-        });
-      });
-    </script>
+    <script src="js/options.js"></script>
   </head>
   <body>
-    <div>
-      <input id="alwaysShowIcon" type="checkbox">
-      <label for="alwaysShowIcon"></label>
-      <input type="button">
+    <div class="wrapper">
+      <h1></h1>
+      <div class="form-wrapper">
+        <div>
+          <input id="alwaysShowIcon" type="checkbox">
+          <label for="alwaysShowIcon"></label>
+        </div>
+        <div>
+          <input id="rememberSelected" type="checkbox">
+          <label for="rememberSelected"></label>
+        </div>
+      </div>
+      <div class="button-wrapper">
+        <input type="button">
+      </div>
     </div>
   </body>
 </html>

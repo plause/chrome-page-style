@@ -19,8 +19,12 @@
     "message": "默认样式",
     "description": "指明一个样式是页面默认的。"
   },
+  "titleSettings": {
+    "message": "Chrome页面样式配置",
+    "description": "配置页面的标题文字"
+  },
   "buttonSave": {
-    "message": "保存",
+    "message": "保存配置",
     "description": "保存按扭的文字。"
   },
   "menuNoStyles": {
@@ -30,6 +34,10 @@
   "labelAlwaysShowIcon": {
     "message": "未找到页面样式时也在地址栏显示图标",
     "description": "'总是显示图标'选项的标签描述"
+  },
+  "labelRememberSelected": {
+    "message": "使用Cookies来记住所选择的页面样式",
+    "description": "'记住页面样式'选项的标签描签"
   },
   "textNoStylesFound": {
     "message": "未发现页面样式",
