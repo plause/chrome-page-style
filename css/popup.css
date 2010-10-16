@@ -6,3 +6,5 @@ li a:link {display: block; color: black; padding: 4px 20px; text-decoration: non
 li a:visited {}
 li a:hover {background-color: lightgray;}
 li a:active {background-color: blue; color: white;}
+li a.preset {font-weight: bold;}
+.selected {background: url(../images/selected-style.png) no-repeat 5px center;}

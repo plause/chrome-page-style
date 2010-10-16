@@ -1,6 +1,8 @@
 var tabs = chrome.tabs;
 var i18n = chrome.i18n.getMessage;
 
+var id = "ddpkgkegfklikkmfmneldonhldahhacb";
+
 /*
  *
  */
@@ -13,40 +15,55 @@ function noStyle() {
 /*
  *
  */
-function switchStyle(style) {
+function switchStyle(name) {
   tabs.getSelected(null, function (tab) {
-    tabs.sendRequest(tab.id, {"type": "switch", "style": style});
+    tabs.sendRequest(tab.id, {"type": "switch", "style": name});
   });
 }
 
 /*
  *
  */
-function createLink(style) {
-  return '<a href="javascript:switchStyle(\'' + style + '\');">' + style + '</a>';
+function toggleSelected(target) {
+  $("a").removeClass("selected");
+  $(target).addClass("selected");
+}
+
+/*
+ *
+ */
+function initialize(object) {
+  var alternates = object.alternates;
+  var selected = object.selected;
+  var preferred = object.preferred;
+
+  $("#noStyle").click(function () {
+    noStyle();
+    toggleSelected(this);
+  }).toggleClass("selected", selected == id);
+
+  $("#defaultStyle").click(function () {
+    switchStyle(preferred);
+    toggleSelected(this);
+  }).toggleClass("selected", selected == preferred);
+
+  var ul = $("#menu > ul");
+
+  $.each(alternates, function (i, e) {
+    var li = $('<li>');
+    var a = $('<a href="javascript:;">' + e + '</a>');
+
+    a.click(function () {
+      switchStyle(e);
+      toggleSelected(this);
+    }).toggleClass("selected", selected == e);
+
+    ul.append(li.append(a));
+  });
 }
 
 $(document).ready(function () {
   tabs.getSelected(null, function (tab) {
-    tabs.sendRequest(tab.id, {"type": "detail"}, function (response) {
-      var alternates = response.alternates;
-      var selected = response.selected;
-      var preferred = response.preferred;
-
-      preferred = preferred == null ? "null" : ("'" + preferred + "'");
-
-      var html = ['<ul>'];
-
-      html.push('<li><a style="font-weight: bold;" href="javascript:noStyle();">' + i18n("menuNoStyles") + '</a></li>');
-      html.push('<li><a style="font-weight: bold;" href="javascript:switchStyle(' + preferred + ');">' + i18n("styleDefault") + '</a></li>');
-
-      for (var i = 0, j = alternates.length; i < j; i++) {
-        html.push('<li>' + createLink(alternates[i]) + '</li>');
-      }
-
-      html.push('</ul>');
-
-      $("#menu").html(html.join(""));
-    });
+    tabs.sendRequest(tab.id, {"type": "detail"}, initialize);
   });
 });
