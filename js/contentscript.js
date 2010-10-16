@@ -166,8 +166,12 @@ function reloadPageStyle() {
   });
 
   var remember = settings["rememberSelected"] == "1";
-  var selected = (remember ? $.cookie(id) : null) || defaultStyle;
   var preferred = (preferreds.length > 1 ? defaultStyle : preferreds[0]) || null;
+  var selected = (remember ? $.cookie(id) : null) || defaultStyle;
+
+  if (alternates.indexOf(selected) == -1 && selected != preferred && selected != id) {
+    selected = preferred; // page changed or the last selected is invalid
+  }
 
   return {"alternates": alternates, "selected": selected, "preferred": preferred};
 }
@@ -186,6 +190,19 @@ function onRequest(request, sender, sendResponse) {
 }
 
 /*
+ * first disable all styles and then switch to the last selected
+ */
+function fixChrome(selected) {
+  noStyle();
+
+  if (selected == id) {
+    // do not switch style if the last selected is 'No Style'
+  } else {
+    switchStyle(selected);
+  }
+}
+
+/*
  *
  */
 function initialize(object) {
@@ -198,8 +215,7 @@ function initialize(object) {
   chrome.extension.onRequest.addListener(onRequest);
 
   // fix chrome
-  noStyle();
-  switchStyle(pageStyle.selected);
+  fixChrome(pageStyle.selected);
 }
 
 chrome.extension.sendRequest({"type": "init"}, initialize);
