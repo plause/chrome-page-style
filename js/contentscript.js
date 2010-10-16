@@ -78,7 +78,9 @@ function toggleLinkedStylesheets(toggle) {
  */
 function toggleEmbeddedStylesheets(toggle) {
   $("style").each(function () {
-    toggleStylesheet(this.sheet, toggle);
+    if (this.sheet) { // may be null if the browser ignored its inner text
+      toggleStylesheet(this.sheet, toggle);
+    }
   });
 }
 
