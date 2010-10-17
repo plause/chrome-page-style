@@ -9,6 +9,7 @@ var property = "chrome-page-style-" + Math.random();
 // or meta HTTP equivalent: Default-Style
 // or preferred stylesheets
 var defaultStyle = document.selectedStylesheetSet;
+var selectedStyle = defaultStyle;
 
 var settings = {};
 
@@ -107,6 +108,8 @@ function toggleInlineStylesheets(toggle) {
  *
  */
 function saveSelected(selected) {
+  selectedStyle = selected;
+
   if (settings["rememberSelected"] == "1") {
     $.cookie(id, selected, selected == null ? {} : {"expires": 1});
   }
@@ -169,7 +172,7 @@ function reloadPageStyle() {
 
   var remember = settings["rememberSelected"] == "1";
   var preferred = (preferreds.length > 1 ? defaultStyle : preferreds[0]) || null;
-  var selected = (remember ? $.cookie(id) : null) || defaultStyle;
+  var selected = (remember ? $.cookie(id) : null) || selectedStyle;
 
   if (alternates.indexOf(selected) == -1 && selected != preferred && selected != id) {
     selected = preferred; // page changed or the last selected is invalid
