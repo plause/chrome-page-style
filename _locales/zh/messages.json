@@ -27,9 +27,13 @@
     "message": "保存配置",
     "description": "保存按扭的文字。"
   },
-  "menuNoStyles": {
+  "menuNoStyle": {
     "message": "无样式",
     "description": "无样式菜单的文字。"
+  },
+  "menuDefaultStyle": {
+    "message": "默认样式",
+    "description": "默认样式菜单的文字。"
   },
   "labelAlwaysShowIcon": {
     "message": "未找到页面样式时也在地址栏显示图标",

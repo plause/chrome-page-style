@@ -27,9 +27,13 @@
     "message": "Save Settings",
     "description": "Text of the 'save' button."
   },
-  "menuNoStyles": {
+  "menuNoStyle": {
     "message": "No Style",
     "description": "Text of the 'No Style' menu."
+  },
+  "menuDefaultStyle": {
+    "message": "Default Style",
+    "description": "Text of the 'Default Style' menu."
   },
   "labelAlwaysShowIcon": {
     "message": "Always show page action icon even page styles not found",

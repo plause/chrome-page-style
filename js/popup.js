@@ -35,12 +35,12 @@ function initialize(object) {
   var selected = object.selected;
   var preferred = object.preferred;
 
-  $("#noStyle").click(function () {
+  $("#noStyle").text(i18n("menuNoStyle")).click(function () {
     noStyle();
     toggleSelected(this);
   }).toggleClass("selected", selected == id);
 
-  $("#defaultStyle").click(function () {
+  $("#defaultStyle").text(i18n("menuDefaultStyle")).click(function () {
     switchStyle(preferred);
     toggleSelected(this);
   }).toggleClass("selected", selected == preferred);
