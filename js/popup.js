@@ -34,6 +34,7 @@ function initialize(object) {
   var alternates = object.alternates;
   var selected = object.selected;
   var preferred = object.preferred;
+  var value = object.preferredValue;
 
   $("#noStyle").text(i18n("menuNoStyle")).click(function () {
     noStyle();
@@ -44,6 +45,10 @@ function initialize(object) {
     switchStyle(preferred);
     toggleSelected(this);
   }).toggleClass("selected", selected == preferred);
+
+  if (value != null) {
+    $("#defaultStyle").text(value + " (" + i18n("styleDefault") + ")");
+  }
 
   var ul = $("#menu > ul");
 
