@@ -3,22 +3,20 @@ var i18n = chrome.i18n.getMessage;
 
 var id = "ddpkgkegfklikkmfmneldonhldahhacb";
 
+var contextTab = null;
+
 /*
  *
  */
 function noStyle() {
-  tabs.getSelected(null, function (tab) {
-    tabs.sendRequest(tab.id, {"type": "none"});
-  });
+  tabs.sendRequest(contextTab.id, {"type": "none"});
 }
 
 /*
  *
  */
 function switchStyle(name) {
-  tabs.getSelected(null, function (tab) {
-    tabs.sendRequest(tab.id, {"type": "switch", "style": name});
-  });
+  tabs.sendRequest(contextTab.id, {"type": "switch", "style": name});
 }
 
 /*
@@ -64,6 +62,8 @@ function initialize(object) {
 
 $(document).ready(function () {
   tabs.getSelected(null, function (tab) {
+    contextTab = tab;
+
     tabs.sendRequest(tab.id, {"type": "detail"}, initialize);
   });
 });
