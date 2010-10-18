@@ -170,15 +170,23 @@ function reloadPageStyle() {
     }
   });
 
+  var length = preferreds.length;
   var remember = settings["rememberSelected"] == "1";
-  var preferred = preferreds.length != 1 ? defaultStyle : preferreds[0];
+  var preferred = length != 1 ? defaultStyle : preferreds[0];
   var selected = (remember ? $.cookie(id) : null) || selectedStyle;
+  var preferredValue = length > 0 ? preferreds.join(",") : preferred;
+
+  var index = alternates.indexOf(preferred);
+
+  if (index > -1) { // preferred is an alternate stylesheet
+    alternates.splice(index, 1);
+  }
 
   if (alternates.indexOf(selected) == -1 && selected != preferred && selected != id) {
     selected = preferred; // page changed or the last selected is invalid
   }
 
-  return {"alternates": alternates, "selected": selected, "preferred": preferred};
+  return {"alternates": alternates, "selected": selected, "preferred": preferred, "preferredValue": preferredValue};
 }
 
 /*
