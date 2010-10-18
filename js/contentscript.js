@@ -171,7 +171,7 @@ function reloadPageStyle() {
   });
 
   var remember = settings["rememberSelected"] == "1";
-  var preferred = (preferreds.length > 1 ? defaultStyle : preferreds[0]) || null;
+  var preferred = preferreds.length != 1 ? defaultStyle : preferreds[0];
   var selected = (remember ? $.cookie(id) : null) || selectedStyle;
 
   if (alternates.indexOf(selected) == -1 && selected != preferred && selected != id) {
