@@ -29,7 +29,7 @@ function doPageAction(tabId, bool) {
  */
 function onRequest(request, sender, sendResponse) {
   if (request.type == "init") {
-    sendResponse({"rememberSelected": localStorage["rememberSelected"]});
+    sendResponse(localStorage);
   } else if (request.type == "icon") {
     var tabId = sender.tab.id;
     var bool = request.detail.alternates.length > 0;

@@ -195,19 +195,6 @@ function onRequest(request, sender, sendResponse) {
 }
 
 /*
- * first disable all styles and then switch to the last selected
- */
-function fixChrome(selected) {
-  noStyle();
-
-  if (selected == id) {
-    // do not switch style if the last selected is 'No Style'
-  } else {
-    switchStyle(selected);
-  }
-}
-
-/*
  *
  */
 function initialize(object) {
@@ -219,8 +206,17 @@ function initialize(object) {
   chrome.extension.sendRequest({"type": "icon", "detail": pageStyle});
   chrome.extension.onRequest.addListener(onRequest);
 
-  // fix chrome
-  fixChrome(pageStyle.selected);
+  var selected = pageStyle.selected;
+
+  if (selected == id) {
+    noStyle();
+  } else {
+    if (settings["dontFixChrome"] != "1") {
+      noStyle();
+    }
+
+    switchStyle(selected);
+  }
 }
 
 chrome.extension.sendRequest({"type": "init"}, initialize);
