@@ -13,8 +13,11 @@ $(document).ready(function () {
   $("h1").text(document.title = i18n("titleSettings"));
 
   $("label[for=fixChrome]").text(i18n("labelFixChrome"));
+  $("label[for=fixChrome] + p").text(i18n("noteFixChrome"));
   $("label[for=alwaysShowIcon]").text(i18n("labelAlwaysShowIcon"));
+  $("label[for=alwaysShowIcon] + p").text(i18n("noteAlwaysShowIcon"));
   $("label[for=rememberSelected]").text(i18n("labelRememberSelected"));
+  $("label[for=rememberSelected] + p").text(i18n("noteRememberSelected"));
 
   $("input[type=button]").val(i18n("buttonSave")).click(function () {
     localStorage["fixChrome"] = $fixChrome.attr("checked") ? "1" : "0";
