@@ -35,6 +35,10 @@
     "message": "Default Style",
     "description": "Text of the 'Default Style' menu."
   },
+  "labelFixChrome": {
+    "message": "Fix Chrome after page loaded",
+    "description": "Label text of option 'fixChrome'."
+  },
   "labelAlwaysShowIcon": {
     "message": "Always show page action icon even page styles not found",
     "description": "Label text of option 'alwaysShowIcon'."
@@ -42,6 +46,18 @@
   "labelRememberSelected": {
     "message": "Use cookies to remember the selected page style",
     "description": "Label text of option 'rememberSelected'."
+  },
+  "noteFixChrome": {
+    "message": "Chrome picks incorrect default style on some pages while Opera and Firefox not. Check this option to try to fix Chrome. If the fix breaks the page's default style, uncheck this option.",
+    "description": "Text of the explanation of option 'fixChrome'."
+  },
+  "noteAlwaysShowIcon": {
+    "message": "The extension's icon will be hidden if the current page contains no extral page style. Check this option if you want to use the 'No Style' feature on those pages.",
+    "description": "Text of the explanation of option 'alwaysShowIcon'."
+  },
+  "noteRememberSelected": {
+    "message": "When checked, the selected style will be remembered when you reload the page or turn to other pages on the same domain. Uncheck this option if this extension does abnormal auto-switch.",
+    "description": "Text of the explanation of option 'rememberSelected'."
   },
   "textNoStylesFound": {
     "message": "No styles found",

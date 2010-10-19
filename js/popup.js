@@ -3,22 +3,20 @@ var i18n = chrome.i18n.getMessage;
 
 var id = "ddpkgkegfklikkmfmneldonhldahhacb";
 
+var contextTab = null;
+
 /*
  *
  */
 function noStyle() {
-  tabs.getSelected(null, function (tab) {
-    tabs.sendRequest(tab.id, {"type": "none"});
-  });
+  tabs.sendRequest(contextTab.id, {"type": "none"});
 }
 
 /*
  *
  */
 function switchStyle(name) {
-  tabs.getSelected(null, function (tab) {
-    tabs.sendRequest(tab.id, {"type": "switch", "style": name});
-  });
+  tabs.sendRequest(contextTab.id, {"type": "switch", "style": name});
 }
 
 /*
@@ -36,6 +34,7 @@ function initialize(object) {
   var alternates = object.alternates;
   var selected = object.selected;
   var preferred = object.preferred;
+  var value = object.preferredValue;
 
   $("#noStyle").text(i18n("menuNoStyle")).click(function () {
     noStyle();
@@ -46,6 +45,10 @@ function initialize(object) {
     switchStyle(preferred);
     toggleSelected(this);
   }).toggleClass("selected", selected == preferred);
+
+  if (value != null) {
+    $("#defaultStyle").text(value + " (" + i18n("styleDefault") + ")");
+  }
 
   var ul = $("#menu > ul");
 
@@ -64,6 +67,8 @@ function initialize(object) {
 
 $(document).ready(function () {
   tabs.getSelected(null, function (tab) {
+    contextTab = tab;
+
     tabs.sendRequest(tab.id, {"type": "detail"}, initialize);
   });
 });

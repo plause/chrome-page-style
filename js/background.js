@@ -20,8 +20,8 @@ function setTitle(tabId, bool) {
  * show or hide page action
  */
 function doPageAction(tabId, bool) {
-  var alwaysShowIcon = localStorage["alwaysShowIcon"] || "0";
-  alwaysShowIcon || bool ? action.show(tabId) : action.hide(tabId);
+  var alwaysShowIcon = localStorage["alwaysShowIcon"] == "1";
+  (alwaysShowIcon || bool) ? action.show(tabId) : action.hide(tabId);
 }
 
 /*
@@ -29,7 +29,7 @@ function doPageAction(tabId, bool) {
  */
 function onRequest(request, sender, sendResponse) {
   if (request.type == "init") {
-    sendResponse({"rememberSelected": localStorage["rememberSelected"]});
+    sendResponse(localStorage);
   } else if (request.type == "icon") {
     var tabId = sender.tab.id;
     var bool = request.detail.alternates.length > 0;

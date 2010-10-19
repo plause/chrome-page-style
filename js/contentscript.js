@@ -170,15 +170,23 @@ function reloadPageStyle() {
     }
   });
 
+  var length = preferreds.length;
   var remember = settings["rememberSelected"] == "1";
-  var preferred = preferreds.length != 1 ? defaultStyle : preferreds[0];
+  var preferred = length != 1 ? defaultStyle : preferreds[0];
   var selected = (remember ? $.cookie(id) : null) || selectedStyle;
+  var preferredValue = length > 0 ? preferreds.join(",") : preferred;
+
+  var index = alternates.indexOf(preferred);
+
+  if (index > -1) { // preferred is an alternate stylesheet
+    alternates.splice(index, 1);
+  }
 
   if (alternates.indexOf(selected) == -1 && selected != preferred && selected != id) {
     selected = preferred; // page changed or the last selected is invalid
   }
 
-  return {"alternates": alternates, "selected": selected, "preferred": preferred};
+  return {"alternates": alternates, "selected": selected, "preferred": preferred, "preferredValue": preferredValue};
 }
 
 /*
@@ -195,19 +203,6 @@ function onRequest(request, sender, sendResponse) {
 }
 
 /*
- * first disable all styles and then switch to the last selected
- */
-function fixChrome(selected) {
-  noStyle();
-
-  if (selected == id) {
-    // do not switch style if the last selected is 'No Style'
-  } else {
-    switchStyle(selected);
-  }
-}
-
-/*
  *
  */
 function initialize(object) {
@@ -219,8 +214,17 @@ function initialize(object) {
   chrome.extension.sendRequest({"type": "icon", "detail": pageStyle});
   chrome.extension.onRequest.addListener(onRequest);
 
-  // fix chrome
-  fixChrome(pageStyle.selected);
+  var selected = pageStyle.selected;
+
+  if (selected == id) {
+    noStyle();
+  } else {
+    if (settings["fixChrome"] == "1") {
+      noStyle();
+    }
+
+    switchStyle(selected);
+  }
 }
 
 chrome.extension.sendRequest({"type": "init"}, initialize);
