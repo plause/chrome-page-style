@@ -20,8 +20,8 @@ function setTitle(tabId, bool) {
  * show or hide page action
  */
 function doPageAction(tabId, bool) {
-  var alwaysShowIcon = localStorage["alwaysShowIcon"] || "0";
-  alwaysShowIcon || bool ? action.show(tabId) : action.hide(tabId);
+  var alwaysShowIcon = localStorage["alwaysShowIcon"] == "1";
+  (alwaysShowIcon || bool) ? action.show(tabId) : action.hide(tabId);
 }
 
 /*
