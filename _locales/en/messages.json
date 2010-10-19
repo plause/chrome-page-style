@@ -35,9 +35,9 @@
     "message": "Default Style",
     "description": "Text of the 'Default Style' menu."
   },
-  "labelDontFixChrome": {
-    "message": "Do not fix Chrome after page loaded",
-    "description": "Label text of option 'dontFixChrome'."
+  "labelFixChrome": {
+    "message": "Fix Chrome after page loaded",
+    "description": "Label text of option 'fixChrome'."
   },
   "labelAlwaysShowIcon": {
     "message": "Always show page action icon even page styles not found",

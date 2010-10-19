@@ -219,7 +219,7 @@ function initialize(object) {
   if (selected == id) {
     noStyle();
   } else {
-    if (settings["dontFixChrome"] != "1") {
+    if (settings["fixChrome"] == "1") {
       noStyle();
     }
 

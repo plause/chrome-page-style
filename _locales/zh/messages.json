@@ -35,9 +35,9 @@
     "message": "默认样式",
     "description": "默认样式菜单的文字。"
   },
-  "labelDontFixChrome": {
-    "message": "在页面加载完成时不要对Chrome进行修复",
-    "description": "'不修复Chrome'选项的标签描签"
+  "labelFixChrome": {
+    "message": "在页面加载完成时对Chrome进行修复",
+    "description": "'修复Chrome'选项的标签描签"
   },
   "labelAlwaysShowIcon": {
     "message": "未找到页面样式时也在地址栏显示图标",
