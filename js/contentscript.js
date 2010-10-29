@@ -219,7 +219,10 @@ function initialize(object) {
   if (selected == id) {
     noStyle();
   } else {
-    if (settings["fixChrome"] == "1") {
+    var fixChrome = settings["fixChrome"] == "1";
+    var rememberSelected = settings["rememberSelected"] == "1";
+
+    if (fixChrome || rememberSelected) {
       noStyle();
     }
 

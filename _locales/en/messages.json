@@ -56,7 +56,7 @@
     "description": "Text of the explanation of option 'alwaysShowIcon'."
   },
   "noteRememberSelected": {
-    "message": "When checked, the selected style will be remembered when you reload the page or turn to other pages on the same domain. Uncheck this option if this extension does abnormal auto-switch.",
+    "message": "When checked, the selected style will be remembered when you reload the page or turn to other pages on the same domain. Uncheck this option if this extension does abnormal auto-switch. This option will trigger a fix on Chrome.",
     "description": "Text of the explanation of option 'rememberSelected'."
   },
   "textNoStylesFound": {
