@@ -47,6 +47,10 @@
     "message": "Use cookies to remember the selected page style",
     "description": "Label text of option 'rememberSelected'."
   },
+  "labelClosePopupAfterSwitch": {
+    "message": "Close popup window after a switch",
+    "description": "Label text of option 'closePopupAfterSwitch'."
+  },
   "noteFixChrome": {
     "message": "Chrome picks incorrect default style on some pages while Opera and Firefox not. Check this option to try to fix Chrome. If the fix breaks the page's default style, uncheck this option.",
     "description": "Text of the explanation of option 'fixChrome'."
@@ -58,6 +62,10 @@
   "noteRememberSelected": {
     "message": "When checked, the selected style will be remembered when you reload the page or turn to other pages on the same domain. Uncheck this option if this extension does abnormal auto-switch. This option will trigger a fix on Chrome.",
     "description": "Text of the explanation of option 'rememberSelected'."
+  },
+  "noteClosePopupAfterSwitch": {
+    "message": "You have to click somewhere outside the popup window to close it after a switch. Check this option will make the popup window closed automatically after a switch.",
+    "description": "Text of the explanation of option 'closePopupAfterSwitch'."
   },
   "textNoStylesFound": {
     "message": "No styles found",
