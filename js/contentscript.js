@@ -214,19 +214,17 @@ function initialize(object) {
   chrome.extension.sendRequest({"type": "icon", "detail": pageStyle});
   chrome.extension.onRequest.addListener(onRequest);
 
+  var fixChrome = settings["fixChrome"] == "1";
+  var rememberSelected = settings["rememberSelected"] == "1";
+
   var selected = pageStyle.selected;
 
-  if (selected == id) {
+  if (fixChrome || rememberSelected) {
     noStyle();
-  } else {
-    var fixChrome = settings["fixChrome"] == "1";
-    var rememberSelected = settings["rememberSelected"] == "1";
 
-    if (fixChrome || rememberSelected) {
-      noStyle();
+    if (selected != id) {
+      switchStyle(selected);
     }
-
-    switchStyle(selected);
   }
 }
 
