@@ -22,6 +22,15 @@ function switchStyle(name) {
 /*
  *
  */
+function closePopup() {
+  if (localStorage["closePopupAfterSwitch"] == "1") {
+    window.close();
+  }
+}
+
+/*
+ *
+ */
 function toggleSelected(target) {
   $("a").removeClass("selected");
   $(target).addClass("selected");
@@ -39,11 +48,13 @@ function initialize(object) {
   $("#noStyle").text(i18n("menuNoStyle")).click(function () {
     noStyle();
     toggleSelected(this);
+    closePopup();
   }).toggleClass("selected", selected == id);
 
   $("#defaultStyle").text(i18n("menuDefaultStyle")).click(function () {
     switchStyle(preferred);
     toggleSelected(this);
+    closePopup();
   }).toggleClass("selected", selected == preferred);
 
   if (value != null) {
@@ -59,6 +70,7 @@ function initialize(object) {
     a.click(function () {
       switchStyle(e);
       toggleSelected(this);
+      closePopup();
     }).toggleClass("selected", selected == e);
 
     ul.append(li.append(a));
