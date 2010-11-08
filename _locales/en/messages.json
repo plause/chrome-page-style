@@ -51,6 +51,10 @@
     "message": "Close popup window after a switch",
     "description": "Label text of option 'closePopupAfterSwitch'."
   },
+  "labelNoStyleWorkWithFrames": {
+    "message": "Apply 'No Style' feature into frames",
+    "description": "Label text of option 'noStyleWorkWithFrames'."
+  },
   "noteFixChrome": {
     "message": "Chrome picks incorrect default style on some pages while Opera and Firefox not. Check this option to try to fix Chrome. If the fix breaks the page's default style, uncheck this option.",
     "description": "Text of the explanation of option 'fixChrome'."
@@ -66,6 +70,10 @@
   "noteClosePopupAfterSwitch": {
     "message": "You have to click somewhere outside the popup window to close it after a switch. Check this option will make the popup window closed automatically after a switch.",
     "description": "Text of the explanation of option 'closePopupAfterSwitch'."
+  },
+  "noteNoStyleWorkWithFrames": {
+    "message": "By default, 'No Style' works only on the top frame. Check this option if you want it to work into all other frames. Swith to a default or any alternate style will trigger a 'Default Style' switch on other frames",
+    "description": "Text of the explanation of option 'noStyleWorkWithFrames'."
   },
   "textNoStylesFound": {
     "message": "No styles found",

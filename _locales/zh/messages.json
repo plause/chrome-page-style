@@ -51,6 +51,10 @@
     "message": "在切换样式后关闭样式选择菜单",
     "description": "'选择样式后关闭菜单'选项的标签描签"
   },
+  "labelNoStyleWorkWithFrames": {
+    "message": "允许'无样式'功能对所有内嵌框架有效",
+    "description": "'无样式对框架有效'选项的标签描签."
+  },
   "noteFixChrome": {
     "message": "有些页面的默认页面样式在Chrome下的显示会与其他标准浏览器不同。选中此项将在页面加载后尝试修复Chrome。",
     "description": "'修复Chrome'选项的解释"
@@ -66,6 +70,10 @@
   "noteClosePopupAfterSwitch": {
     "message": "在选择一个样式后你必须点击其他地方才能使样式选择菜单关闭。选中此项后，切换样式成功后将自动关闭选择菜单。",
     "description": "'选择样式后关闭菜单'选项的解释."
+  },
+  "noteNoStyleWorkWithFrames": {
+    "message": "默认情况下，'无样式'仅作用于顶层框架。选中此项将使其他框架也可以应用'无样式'功能。切换到默认样式或其他备用样式将使所有其他框架切换到默认样式。",
+    "description": "'无样式对框架有效'选项的解释."
   },
   "textNoStylesFound": {
     "message": "未发现页面样式",

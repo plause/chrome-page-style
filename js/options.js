@@ -13,6 +13,9 @@ $(document).ready(function () {
   var $closePopupAfterSwitch = $("#closePopupAfterSwitch");
   $closePopupAfterSwitch.attr("checked", localStorage["closePopupAfterSwitch"] == "1");
 
+  var $noStyleWorkWithFrames = $("#noStyleWorkWithFrames");
+  $noStyleWorkWithFrames.attr("checked", localStorage["noStyleWorkWithFrames"] == "1");
+
   $("h1").text(document.title = i18n("titleSettings"));
 
   $("label[for=fixChrome]").text(i18n("labelFixChrome"));
@@ -23,12 +26,15 @@ $(document).ready(function () {
   $("label[for=rememberSelected] + p").text(i18n("noteRememberSelected"));
   $("label[for=closePopupAfterSwitch]").text(i18n("labelClosePopupAfterSwitch"));
   $("label[for=closePopupAfterSwitch] + p").text(i18n("noteClosePopupAfterSwitch"));
+  $("label[for=noStyleWorkWithFrames]").text(i18n("labelNoStyleWorkWithFrames"));
+  $("label[for=noStyleWorkWithFrames] + p").text(i18n("noteNoStyleWorkWithFrames"));
 
   $("input[type=button]").val(i18n("buttonSave")).click(function () {
     localStorage["fixChrome"] = $fixChrome.attr("checked") ? "1" : "0";
     localStorage["alwaysShowIcon"] = $alwaysShowIcon.attr("checked") ? "1" : "0";
     localStorage["rememberSelected"] = $rememberSelected.attr("checked") ? "1" : "0";
     localStorage["closePopupAfterSwitch"] = $closePopupAfterSwitch.attr("checked") ? "1" : "0";
+    localStorage["noStyleWorkWithFrames"] = $closePopupAfterSwitch.attr("checked") ? "1" : "0";
     window.alert(i18n("messageSettingsSaved"));
   });
 });
